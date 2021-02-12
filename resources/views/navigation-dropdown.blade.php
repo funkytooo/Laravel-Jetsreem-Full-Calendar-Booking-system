@@ -16,6 +16,7 @@
                         {{ __('Dashboard') }}
                     </x-jet-nav-link>
                 </div>
+
                 @can('task_access')
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                         <x-jet-nav-link href="{{ route('tasks.index') }}" :active="request()->routeIs('tasks.*')">
@@ -23,6 +24,7 @@
                         </x-jet-nav-link>
                     </div>
                 @endcan
+
                 @can('user_access')
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                         <x-jet-nav-link href="{{ route('users.index') }}" :active="request()->routeIs('users.*')">
@@ -30,6 +32,14 @@
                         </x-jet-nav-link>
                     </div>
                 @endcan
+
+                @can('user_access')
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-nav-link href="calendar" :active="request()->routeIs('calendar.*')">
+                            Calendar
+                    </x-jet-nav-link>
+                </div>
+            @endcan
             </div>
 
             <!-- Settings Dropdown -->

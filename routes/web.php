@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,4 +26,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('tasks', \App\Http\Controllers\TasksController::class);
 
     Route::resource('users', \App\Http\Controllers\UsersController::class);
+});
+
+//Route::get('/calendar', [CalendarController::class],'index');
+
+Route::get('/calendar', function () {
+    return view('calendar');
 });
