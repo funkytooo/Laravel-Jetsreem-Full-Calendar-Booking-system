@@ -33,13 +33,13 @@
                     </div>
                 @endcan
 
-                @can('user_access')
+               <!-- can('user_access')
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="calendar" :active="request()->routeIs('calendar.*')">
                             Calendar
                     </x-jet-nav-link>
                 </div>
-            @endcan
+            endcan-->
             </div>
 
             <!-- Settings Dropdown -->
