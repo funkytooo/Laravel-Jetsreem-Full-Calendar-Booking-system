@@ -19,8 +19,8 @@
 
                 @can('task_access')
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                        <x-jet-nav-link href="{{ route('tasks.index') }}" :active="request()->routeIs('tasks.*')">
-                            Tasks
+                        <x-jet-nav-link href="{{ route('services.index') }}" :active="request()->routeIs('tasks.*')">
+                            Services
                         </x-jet-nav-link>
                     </div>
                 @endcan
@@ -39,14 +39,6 @@
                             Calendar
                     </x-jet-nav-link>
                 </div>
-            @endcan
-
-            @can('user_access')
-            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                <x-jet-nav-link href="" :active="request()->routeIs('calendar.*')">
-                        Services
-                </x-jet-nav-link>
-            </div>
             @endcan
 
             @can('user_access')

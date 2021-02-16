@@ -70,9 +70,7 @@
     <link href='fullcalendar/main.css' rel='stylesheet' />
     <script src='fullcalendar/main.js'></script>
     
-
-  
-</head>
+  </head>
 <body>
   
 <div class="container">
@@ -112,20 +110,23 @@ document.addEventListener('DOMContentLoaded', function() {
 				    }
             },
 
-          select: function () {
-            if (info.date === 'timeField');
-            $('#bookingForm').modal('show');
-            
-            },
-            //When u drop an event in the calendar do the following:
-            eventDrop: function (event, delta, revertFunc) {
-                //do something when event is dropped at a new location
-            },
+            eventClick: function(info) {
+      var eventObj = info.event;
 
-            //When u resize an event in the calendar do the following:
-            eventResize: function (event, delta, revertFunc) {
-                //do something when event is resized
-            },
+            if (eventObj.url) {
+              alert(
+                'Clicked ' + eventObj.title + '.\n' +
+                'Will open ' + eventObj.url + ' in a new tab'
+              );
+
+              window.open(eventObj.url);
+
+              info.jsEvent.preventDefault(); // prevents browser from following link in current tab.
+              } else {
+              alert('Clicked ' + eventObj.title);
+              }
+           },
+          initialDate: '2021-02-15',
 
             eventRender: function(event, element) {
                 $(element).tooltip({title: event.title});             
