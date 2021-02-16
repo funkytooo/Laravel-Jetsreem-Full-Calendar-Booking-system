@@ -1,10 +1,12 @@
-<div class="modal" id ="peno"tabindex="-1">
+<div class="modal" id ="bookingForm"tabindex="-1">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header">
+      <div class="modal-header" style="background-color: #f8f9fa">
         <h5 class="modal-title">Booking form</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
+      <br style="margin-bottom:240px;"/>
+      <div class="container">
       <form>
         <div class="form-group">
           
@@ -27,16 +29,15 @@
           <label for="exampleFormControlInput1"></label>
           <input type="email" class="form-control" id="email" placeholder="Email">
         </div>
-        
         </form>
-      <div class="modal-footer">
+        </div>
+        <br style="margin-bottom:240px;"/>
+      <div class="modal-footer" style="background-color: #f8f9fa">
         <button type="button" class="btn btn-primary">Confirm appointment</button>
       </div>
     </div>
   </div>
 </div>
-
-
 
 <!DOCTYPE html>
 <html>
@@ -66,7 +67,8 @@
     integrity="sha256-uq9PNlMzB+1h01Ij9cx7zeE2OR2pLAfRw3uUUOOPKdA=" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.5.1/main.min.js" 
     integrity="sha256-rPPF6R+AH/Gilj2aC00ZAuB2EKmnEjXlEWx5MkAp7bw=" crossorigin="anonymous"></script>
-
+    <link href='fullcalendar/main.css' rel='stylesheet' />
+    <script src='fullcalendar/main.js'></script>
     
 
   
@@ -80,6 +82,7 @@
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var calendarEl = document.getElementById('calendar');
+  var timesClicked  = 0;
 
   var calendar = new FullCalendar.Calendar(calendarEl, {
     selectable: true,
@@ -89,39 +92,48 @@ document.addEventListener('DOMContentLoaded', function() {
       left:'title',
       right: 'dayGridMonth timeGridWeek timeGridDay today prev,next'
     },
-
-     //When u select some space in the calendar do the following:
-     select: function (day) {
-            //do something when space selected
-            //Show 'add event' modal
-            $('#peno').modal('show');
-        },
-
-        //When u drop an event in the calendar do the following:
-        eventDrop: function (event, delta, revertFunc) {
-            //do something when event is dropped at a new location
-        },
-
-        //When u resize an event in the calendar do the following:
-        eventResize: function (event, delta, revertFunc) {
-            //do something when event is resized
-        },
-
-        eventRender: function(event, element) {
-            $(element).tooltip({title: event.title});             
-        },
-
-        //Activating modal for 'when an event is clicked'
-        dayClick: function () {
-          $('#peno').modal('show');
-            
-        },
+    events: [
+                {
+                 title  : 'test event',
+                 start  : '2021-02-15',
+                 end  : '2021-02-15'
+                } 
+        ],
       
+        dateClick: function (info){
+          
+          if (timesClicked == 0) {
+            calendar.changeView('timeGridDay');
+					  calendar.gotoDate(info.date);
+            timesClicked++;
+            } else {
+            $('#bookingForm').modal('show');
+            timesClicked--;
+				    }
+            },
 
+          select: function () {
+            if (info.date === 'timeField');
+            $('#bookingForm').modal('show');
+            
+            },
+            //When u drop an event in the calendar do the following:
+            eventDrop: function (event, delta, revertFunc) {
+                //do something when event is dropped at a new location
+            },
+
+            //When u resize an event in the calendar do the following:
+            eventResize: function (event, delta, revertFunc) {
+                //do something when event is resized
+            },
+
+            eventRender: function(event, element) {
+                $(element).tooltip({title: event.title});             
+            },
+        
   });
-
   calendar.render();
-});
+   });
   </script>
 
 </body>

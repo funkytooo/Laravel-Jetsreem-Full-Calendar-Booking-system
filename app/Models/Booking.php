@@ -5,11 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
   
-class Event extends Model
+class Booking extends Model
 {
     use HasFactory;
   
-    protected $fillable = [
-        'title', 'start', 'end'
-    ];
+    protected $table = 'booking';
+    protected $fillable = ['first_name','surname','phone','email','service','start','end'];
 }
