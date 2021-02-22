@@ -11,19 +11,12 @@
         @csrf
         <div class="form-group">
           
-         <!-- <select class="form-select" aria-label="Default select example">
+          <select class="form-select" name = "service" id = "service" aria-label="Default select example">
             <option selected>Select service</option>
             <option value="1">One</option>
             <option value="2">Two</option>
             <option value="3">Three</option>
-          </select>-->
-        </div>
-        <div class="form-group">
-          <label for="exampleFormControlInput1"></label>
-          <input type="text" name= "title" class="form-control" id="title"  placeholder="Title">
-          @error('Title')
-              <p class="text-sm text-red-600">{{ $message }}</p>
-          @enderror
+          </select>
         </div>
         <div class="form-group">
           <label for="exampleFormControlInput1"></label>
@@ -37,6 +30,27 @@
           <input type="datetime-local" name = "end" class="form-control" id = "end"  placeholder="End">
           @error('End')
           <p class="text-sm text-red-600">{{ $message }}</p>
+          @enderror
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlInput1"></label>
+          <input type="text" name= "name" class="form-control" id="name"  placeholder="Name">
+          @error('Name')
+              <p class="text-sm text-red-600">{{ $message }}</p>
+          @enderror
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlInput1"></label>
+          <input type="text" name= "phone" class="form-control" id="phone"  placeholder="Phone">
+          @error('Phone')
+              <p class="text-sm text-red-600">{{ $message }}</p>
+          @enderror
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlInput1"></label>
+          <input type="text" name= "email" class="form-control" id="email"  placeholder="Email">
+          @error('Email')
+              <p class="text-sm text-red-600">{{ $message }}</p>
           @enderror
         </div>
         

@@ -17,9 +17,12 @@ class CreateBookingTable extends Migration
            
         
                 $table->increments('id');
-                $table->string('title');
+                $table->string('service');
                 $table->dateTime('start');
                 $table->dateTime('end');
+                $table->string('name');
+                $table->integer('phone');
+                $table->string('email');
                 $table->timestamps();
             
 

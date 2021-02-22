@@ -10,5 +10,5 @@ class Booking extends Model
     use HasFactory;
   
     protected $table = 'booking';
-    protected $fillable = ['title','start','end'];
+    protected $fillable = ['service','start','end','name','phone','email'];
 }

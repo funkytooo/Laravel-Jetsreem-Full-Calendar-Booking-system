@@ -24,9 +24,12 @@ class CalendarController extends Controller
     
         {
             $validator = Validator::make($request->all(), [
-                'title' => 'required',
+                'service' => 'required',
                 'start' => 'required',
                 'end' => 'required',
+                'name' => 'required',
+                'phone' => 'required',
+                'email' => 'required',
                 
             ]);
     
@@ -40,7 +43,7 @@ class CalendarController extends Controller
             $booking = Booking::create($request->all());
     
             
-            return response()->json(['success'=>'Added new records.']);
+            return view('calendar');
         }
     
  
