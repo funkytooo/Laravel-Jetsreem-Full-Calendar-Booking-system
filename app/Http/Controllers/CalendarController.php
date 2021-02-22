@@ -1,70 +1,51 @@
 <?php
-  
+
 namespace App\Http\Controllers;
-  
+
+use App\Models\Booking;
 use Illuminate\Http\Request;
-use App\Models\Event;
-  
+use Illuminate\Support\Facades\Validator;
+
 class CalendarController extends Controller
 {
-    /**
-     * Write code on Method
-     *
-     * @return response()
-     */
     public function index(Request $request)
     {
-  
-        if($request->ajax()) {
-       
-             $data = Event::whereDate('start', '>=', $request->start)
-                       ->whereDate('end',   '<=', $request->end)
-                       ->get(['id', 'title', 'start', 'end']);
-  
-             return response()->json($data);
-        }
-  
+        $booking = Booking::all();
         return view('calendar');
     }
- 
-    /**
-     * Write code on Method
-     *
-     * @return response()
-     */
-    public function ajax(Request $request)
-    {
- 
-        switch ($request->type) {
-           case 'add':
-              $event = Event::create([
-                  'title' => $request->title,
-                  'start' => $request->start,
-                  'end' => $request->end,
-              ]);
- 
-              return response()->json($event);
-             break;
-  
-           case 'update':
-              $event = Event::find($request->id)->update([
-                  'title' => $request->title,
-                  'start' => $request->start,
-                  'end' => $request->end,
-              ]);
- 
-              return response()->json($event);
-             break;
-  
-           case 'delete':
-              $event = Event::find($request->id)->delete();
-  
-              return response()->json($event);
-             break;
-             
-           default:
-             # code...
-             break;
-        }
+    
+   
+    public function create(Request $request)
+    {  
+          
+
     }
+    public function store(Request $request)
+    
+        {
+            $validator = Validator::make($request->all(), [
+                'title' => 'required',
+                'start' => 'required',
+                'end' => 'required',
+                
+            ]);
+    
+    
+            if ($validator->fails()) {
+    
+                return response()->json(['error'=>$validator->errors()->all()]);
+                
+            } else
+              
+            $booking = Booking::create($request->all());
+    
+            
+            return response()->json(['success'=>'Added new records.']);
+        }
+    
+ 
+   
+ 
+ 
+    
 }

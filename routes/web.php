@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,13 +22,13 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::resource('services', \App\Http\Controllers\ServicesController::class);
+    Route::resource('services', App\Http\Controllers\ServicesController::class);
 
-    Route::resource('users', \App\Http\Controllers\UsersController::class);
+    Route::resource('users', App\Http\Controllers\UsersController::class);
+
+    Route::resource('bookings', \App\Http\Controllers\CalendarController::class);
 });
 
-//Route::get('/calendar', [CalendarController::class],'index');
 
-Route::get('/calendar', function () {
-    return view('calendar');
-});
+
+

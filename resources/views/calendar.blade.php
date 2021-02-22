@@ -7,37 +7,48 @@
       </div>
       <br style="margin-bottom:240px;"/>
       <div class="container">
-      <form>
+      <form method="post" action="{{ route('bookings.store') }}">
+        @csrf
         <div class="form-group">
           
-          <select class="form-select" aria-label="Default select example">
+         <!-- <select class="form-select" aria-label="Default select example">
             <option selected>Select service</option>
             <option value="1">One</option>
             <option value="2">Two</option>
             <option value="3">Three</option>
-          </select>
+          </select>-->
         </div>
         <div class="form-group">
           <label for="exampleFormControlInput1"></label>
-          <input type="email" class="form-control" id="name" placeholder="Name">
+          <input type="text" name= "title" class="form-control" id="title"  placeholder="Title">
+          @error('Title')
+              <p class="text-sm text-red-600">{{ $message }}</p>
+          @enderror
         </div>
         <div class="form-group">
           <label for="exampleFormControlInput1"></label>
-          <input type="phone" class="form-control" id="phone" placeholder="Phone">
+          <input type="datetime-local" name = "start" class="form-control"  id = "start" placeholder="Start">
+          @error('Start')
+              <p class="text-sm text-red-600">{{ $message }}</p>
+          @enderror
         </div>
         <div class="form-group">
           <label for="exampleFormControlInput1"></label>
-          <input type="email" class="form-control" id="email" placeholder="Email">
+          <input type="datetime-local" name = "end" class="form-control" id = "end"  placeholder="End">
+          @error('End')
+          <p class="text-sm text-red-600">{{ $message }}</p>
+          @enderror
         </div>
-        </form>
+        
         </div>
         <br style="margin-bottom:240px;"/>
       <div class="modal-footer" style="background-color: #f8f9fa">
-        <button type="button" class="btn btn-primary">Confirm appointment</button>
+        <button type="submit" value="submit" class="btn btn-primary">Confirm appointment</button>
       </div>
     </div>
   </div>
 </div>
+</form>
 
 <!DOCTYPE html>
 <html>
