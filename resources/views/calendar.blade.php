@@ -124,19 +124,24 @@ document.addEventListener('DOMContentLoaded', function() {
         ],
       
         dateClick: function (info){
+          var date = new Date(dateStr + 'T00:00:00');
           
           if (timesClicked == 0) {
             calendar.changeView('timeGridDay');
 					  calendar.gotoDate(info.date);
             timesClicked++;
-            } else {
             $('#bookingForm').modal('show');
             timesClicked--;
-				    }
+            calendar.addEvent({
+              title: 'dynamic event',
+              start: date,
+              allDay: true
+            });        
+            } 
             },
 
             eventClick: function(info) {
-      var eventObj = info.event;
+             var eventObj = info.event;
 
             if (eventObj.url) {
               alert(
