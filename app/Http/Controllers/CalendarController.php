@@ -8,10 +8,11 @@ use Illuminate\Support\Facades\Validator;
 
 class CalendarController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
-        $booking = Booking::all();
-        return view('calendar');
+        $booking = Booking::Latest()->get();
+        
+        return response()->json($booking, 200);
     }
     
    

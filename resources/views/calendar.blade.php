@@ -115,52 +115,23 @@ document.addEventListener('DOMContentLoaded', function() {
       left:'title',
       right: 'dayGridMonth timeGridWeek timeGridDay today prev,next'
     },
-    events: [
-                {
-                 title  : 'test event',
-                 start  : '2021-02-15',
-                 end  : '2021-02-15'
-                } 
-        ],
+    events: "{{ route('allBookings') }}",
       
         dateClick: function (info){
-          var date = new Date(dateStr + 'T00:00:00');
           
           if (timesClicked == 0) {
             calendar.changeView('timeGridDay');
 					  calendar.gotoDate(info.date);
             timesClicked++;
             $('#bookingForm').modal('show');
-            timesClicked--;
-            calendar.addEvent({
-              title: 'dynamic event',
-              start: date,
-              allDay: true
-            });        
+            timesClicked--; 
+                  
             } 
             },
 
-            eventClick: function(info) {
-             var eventObj = info.event;
+            
 
-            if (eventObj.url) {
-              alert(
-                'Clicked ' + eventObj.title + '.\n' +
-                'Will open ' + eventObj.url + ' in a new tab'
-              );
-
-              window.open(eventObj.url);
-
-              info.jsEvent.preventDefault(); // prevents browser from following link in current tab.
-              } else {
-              alert('Clicked ' + eventObj.title);
-              }
-           },
-          initialDate: '2021-02-15',
-
-            eventRender: function(event, element) {
-                $(element).tooltip({title: event.title});             
-            },
+            
         
   });
   calendar.render();
