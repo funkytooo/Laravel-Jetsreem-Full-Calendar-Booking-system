@@ -34,7 +34,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     
 });
-Route::get('index','\App\Http\Controllers\CalendarController::class@index')->name('allBookings');
+Route::get('bookings','\App\Http\Controllers\CalendarController::class@index')->name('allBookings');
 
 
 
